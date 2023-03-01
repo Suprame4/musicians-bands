@@ -4,7 +4,7 @@ const {Sequelize, sequelize} = require('./db');
 //The Band model should have name and genre properties, both of which are strings.
 let Band = sequelize.define("Band", {
 
-    name: Sequelize,
+    name: Sequelize.STRING,
     genre: Sequelize.STRING
 })
 
