@@ -1,7 +1,12 @@
 const {Sequelize, sequelize} = require('./db');
 
 // TODO - define the Musician model
-let Musician;
+
+//The Musician model should have name and instrument properties, both of which are strings.
+let Musician = sequelize.define("Musician", {
+    name: Sequelize.STRING,
+    instrument: Sequelize.STRING
+});
 
 module.exports = {
     Musician
