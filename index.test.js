@@ -12,11 +12,12 @@ describe('Band and Musician Models', () => {
         await sequelize.sync({ force: true });
     })
 
-    test('can create a Band', async () => {
+    test('can create a Band and test showCount', async () => {
         // TODO - test creating a band
-        const testUser = await Band.create({name: "testName", genre: "testGenre"})
+        const testUser = await Band.create({name: "testName", genre: "testGenre", showCount: 20})
         expect(testUser.name).toBe("testName");
         expect(testUser.genre).toBe("testGenre")
+        expect(testUser.showCount).toBe(20)
     })
 
     test('can create a Musician', async () => {
@@ -24,5 +25,19 @@ describe('Band and Musician Models', () => {
         const testMusician = await Musician.create({ name:"testName", instrument: "testInstrument"})
         expect(testMusician.instrument).toBe("testInstrument");
         expect(testMusician.name).toBe("testName")
+    })
+
+    test("test updating and deleting an instance", async () => {
+        const testUser = await Band.create({name: "testName", genre: "testGenre", showCount: 20})
+        
+        const testUpdate = await testUser.update({
+            name: "updateName"
+        })
+        expect(testUser.name).toBe("updateName")
+
+        //delete the instance 
+        await testUser.destroy()
+        expect(testUser).toBeUndefined()
+
     })
 })
