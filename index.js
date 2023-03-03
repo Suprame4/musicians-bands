@@ -1,9 +1,21 @@
 const {Band} = require('./Band')
 const {Musician} = require('./Musician')
+const {Song} = require('./Song')
+
+//define the associations 
+//multiple musicians can be added to a band, a musician belongs to a band
+Musician.belongsTo(Band)
+Band.hasMany(Musician)
+
+//many-to-many association with song and band
+Band.belongsToMany(Song, {through: "through_table"})
+Song.belongsToMany(Band, {through: "through_table"})
+
 
 module.exports = {
     Band,
-    Musician
+    Musician,
+    Song
 };
 
 /* 
